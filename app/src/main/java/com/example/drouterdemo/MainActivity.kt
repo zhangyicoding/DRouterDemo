@@ -21,7 +21,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
 
         binding.btn.setOnClickListener {
-            DRouter.build("/home/main")
+            DRouter.build("/home/container")
                 .start(this, object : ActivityCallback() {
                     override fun onActivityResult(resultCode: Int, data: Intent?) {
                         ZYUtil.e("main activity result, resultcode=${resultCode}")

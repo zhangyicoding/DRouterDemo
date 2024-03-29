@@ -11,7 +11,7 @@ import com.example.base.binding.BindingActivity
 import com.example.home.databinding.ActivityHomeBinding
 import zhangyi.ZYUtil
 
-@Router(uri = "/home/main")
+@Router(uri = "/home/container")
 class HomeActivity : BindingActivity<ActivityHomeBinding>() {
 
     override fun getViewBinding(): ActivityHomeBinding {
@@ -23,6 +23,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>() {
         setResult(RESULT_OK)
 
         val router = MyPageRouter(supportFragmentManager, binding.fragmentContainerView.id)
+
         DRouter.register(
             ServiceKey.build(IPageRouter::class.java).setLifecycle(lifecycle),
             router
@@ -37,7 +38,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>() {
             this
         )
 
-        router.showPage(IPageBean.DefPageBean("/amount/amount/abc/123"))
+        router.showPage(IPageBean.DefPageBean("/home/main/zhangyi18/0"))
     }
 
     /**

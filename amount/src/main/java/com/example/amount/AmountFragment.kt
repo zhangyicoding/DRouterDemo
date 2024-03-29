@@ -13,7 +13,7 @@ import com.example.amount.databinding.FragmentAmountBinding
 import com.example.base.binding.BindingFragment
 import zhangyi.ZYUtil
 
-@Router(uri = "/amount/amount/<arg1>/<arg2>")
+@Router(uri = "/amount/amount")
 class AmountFragment : BindingFragment<FragmentAmountBinding>() {
 
     override fun getViewBinding(
@@ -25,10 +25,6 @@ class AmountFragment : BindingFragment<FragmentAmountBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val stringArg1 = requireArguments().getString("arg1")
-        val intArg2 = requireArguments().getString("arg2")?.toInt()
-        ZYUtil.e("amount onViewCreated, arg1=${stringArg1}, arg2=${intArg2}")
 
         binding.btn.setOnClickListener {
             val router = DRouter.build(IPageRouter::class.java).getService()
