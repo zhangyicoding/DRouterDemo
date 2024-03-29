@@ -10,7 +10,7 @@ import com.didi.drouter.router.Request
 import com.example.user_api.IUserApi
 import zhangyi.ZYUtil
 
-@Interceptor(global = false, cache = SINGLETON)
+@Interceptor(global = true, cache = SINGLETON)
 class LoginInterceptor : IRouterInterceptor {
 
     init {
@@ -25,8 +25,9 @@ class LoginInterceptor : IRouterInterceptor {
             val router = DRouter.build(IPageRouter::class.java).getService()
             ZYUtil.e("login interceptor, router is ${router.javaClass}")
             router.showPage(IPageBean.DefPageBean("/login/username"))
+            return
         }
-//        request.interceptor.onContinue()
+        request.interceptor.onContinue()
     }
 
     private fun needRedirect(request: Request): Boolean {
