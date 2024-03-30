@@ -33,7 +33,7 @@ class MineFragment : BindingFragment<FragmentMineBinding>() {
 
         binding.tvAvatar.setOnClickListener {
             val router = DRouter.build(IPageRouter::class.java).getService()
-            router.showPage(IPageBean.DefPageBean("/mine/profile"))
+            router.showPage(IPageBean.DefPageBean("/mine/profile/${binding.tvAvatar.text}"))
         }
     }
 

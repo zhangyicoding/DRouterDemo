@@ -19,13 +19,7 @@ class LoginInterceptor : IRouterInterceptor {
 
     override fun handle(request: Request) {
         if (needRedirect(request)) {
-//            request.setRedirect("/login/username")
-            request.interceptor.onInterrupt()
-
-            val router = DRouter.build(IPageRouter::class.java).getService()
-            ZYUtil.e("login interceptor, router is ${router.javaClass}")
-            router.showPage(IPageBean.DefPageBean("/login/username"))
-            return
+            request.setRedirect("/login/username")
         }
         request.interceptor.onContinue()
     }
@@ -33,8 +27,8 @@ class LoginInterceptor : IRouterInterceptor {
     private fun needRedirect(request: Request): Boolean {
         val uri = request.uri.toString()
         ZYUtil.e("login interceptor handle, uri=${uri}")
-        when (uri) {
-            "/mine/profile" -> {
+        when {
+            uri.startsWith("/mine/profile") -> {
                 val userApi = DRouter.build(IUserApi::class.java).getService()
                 if (userApi.isLogin().not()) {
                     return true
